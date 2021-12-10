@@ -20,21 +20,21 @@
 
 int main() {
 
-  int open_call_1 = open("a", O_WRONLY, 0777);
-  int open_call_2 = open("b", O_RDONLY, 0777);
+  int open_call_1 = open("a", O_RDONLY, 0777);
+  int open_call_2 = open("b", O_WRONLY, 0777);
 
   while (42) {
 
     char input[1000];
 
-    read(open_call_2, input, sizeof(input));
+    read(open_call_1, input, sizeof(input));
 
     int i;
     for (i = 0; i < strlen(input); i++) {
       input[i] = toupper(input[i]);
     }
 
-    write(open_call_1, input, strlen(input));
+    write(open_call_2, input, strlen(input));
 
   }
 
